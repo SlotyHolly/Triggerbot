@@ -1,7 +1,8 @@
 ﻿#include <Windows.h>
 #include <vector>
+using namespace std;
 
-std::vector<int> Get_PixelColor(int X, int Y) noexcept//Get screen pixel color
+vector<int> Get_PixelColor(int X, int Y) noexcept//Get screen pixel color
 {
 	static HDC Screen_HDC = GetWindowDC(NULL);
 	const COLORREF Pixel = GetPixel(Screen_HDC, X, Y);
@@ -14,10 +15,10 @@ int main() noexcept//main thread
 
 	while (true)//Loop
 	{
-		const std::vector<int> ScreenResolution = { GetSystemMetrics(SM_CXSCREEN) ,GetSystemMetrics(SM_CYSCREEN) };//Get system monitor pixels
+		const vector<int> ScreenResolution = { GetSystemMetrics(SM_CXSCREEN) ,GetSystemMetrics(SM_CYSCREEN) };//Get system monitor pixels
 		const auto New_PixelColor = Get_PixelColor(ScreenResolution[0] / 2 + 1, ScreenResolution[1] / 2 + 1);//Read the center position of the screen
 		static auto Old_PixelColor = New_PixelColor;//initialization
-
+		 
 		if (GetAsyncKeyState(VK_SPACE) & 0x8000)//trigger button
 		{
 			const auto ColorGap = 20;//To deal with shadow changes(in game)
