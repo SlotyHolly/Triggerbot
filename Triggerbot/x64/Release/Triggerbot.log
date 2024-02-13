@@ -1,8 +1,6 @@
 ﻿  main.cpp
-C:\Users\matia\source\repos\Triggerbot\Triggerbot\main.cpp(27,11): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
-C:\Users\matia\source\repos\Triggerbot\Triggerbot\main.cpp(29,11): warning C4244: 'argument': conversion from 'double' to 'DWORD', possible loss of data
   Generating code
   Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 97 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 140 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   Triggerbot.vcxproj -> C:\Users\matia\source\repos\Triggerbot\x64\Release\OverWorlf.exe

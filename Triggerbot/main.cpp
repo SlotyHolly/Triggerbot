@@ -1,12 +1,14 @@
-﻿#include <Windows.h>
+﻿#include <Windows.h>			
 #include <vector>
+#include <chrono>
+#include <thread>
 using namespace std;
 
 vector<int> Get_PixelColor(int X, int Y) noexcept//Get screen pixel color
 {
 	static HDC Screen_HDC = GetWindowDC(NULL);
 	const COLORREF Pixel = GetPixel(Screen_HDC, X, Y);
-	return { GetRValue(Pixel), GetGValue(Pixel), GetBValue(Pixel) };//[0]==Red  [1]==Green  [2]==Blue
+	return { GetRValue(Pixel), GetGValue(Pixel), GetBValue(Pixel) };
 }
 int main() noexcept//main thread
 {
@@ -24,9 +26,9 @@ int main() noexcept//main thread
 			const auto ColorGap = 20;//To deal with shadow changes(in game)
 			if (abs(New_PixelColor[0] - Old_PixelColor[0]) >= ColorGap || abs(New_PixelColor[1] - Old_PixelColor[1]) >= ColorGap || abs(New_PixelColor[2] - Old_PixelColor[2]) >= ColorGap)//check color
 			{
-				Sleep(0.2);// Delay to avoid fast trigger
+				this_thread::sleep_for(chrono::milliseconds(200));// Delay to avoid fast trigger
 				keybd_event(VK_INSERT, 0, 0, 0);
-				Sleep(0.1);//Give the game program time to react
+				this_thread::sleep_for(chrono::milliseconds(100));//Give the game program time to react
 				keybd_event(VK_INSERT, 0, KEYEVENTF_KEYUP, 0);
 				Old_PixelColor = New_PixelColor;//refresh
 			}
